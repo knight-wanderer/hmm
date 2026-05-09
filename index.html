@@ -400,48 +400,6 @@ Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho ph
 Unauthorized modification or copying is prohibited.
 -->
   <br><br>
-
-<!-- ================= TIME MESSAGE ================= -->
-<div class="card">
-<div class="glass" style="width:100%; max-width:100%; box-sizing:border-box; margin: 12px auto; background: linear-gradient(135deg,#ede7f6,#d1c4e9); border-left: 6px solid #673ab7; border-radius: 16px; padding: 16px; font-family: Segoe UI,Tahoma,Arial; color: #2a1b4d; box-shadow: 0 8px 20px rgba(103,58,183,.35);">
-<div style="font-weight: 900; font-size: 15px; margin-bottom: 8px;">⏰ LỜI NHẮN THEO GIỜ</div>
-<div id="timeText" style="font-size: 14px; line-height: 1.5;">Bấm n&uacute;t b&ecirc;n dưới để xem lời nhắn hiện tại =)</div>
-<!--
-© 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
-Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho phép.
-© 2026 - Source code is the property of the author.
-Unauthorized modification or copying is prohibited.
--->
-<div style="margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; cursor: pointer; font-weight: 900; font-size: 13px; color: #ffffff; background: linear-gradient(180deg,#673ab7,#4527a0); border-radius: 999px; box-shadow: 0 4px 10px rgba(0,0,0,.25);" onclick="
-    var d=new Date();
-    var h=d.getHours();
-    var m=d.getMinutes();
-    if(m&lt;10){m='0'+m;}
-    var msg='';
-    if(h&lt;6){
-      msg='🌙 Khuya rồi, đ&aacute;nh cờ nhẹ th&ocirc;i nha';
-    }else if(h&lt;11){
-      msg='☀️ Ch&agrave;o buổi s&aacute;ng! Đ&aacute;nh cờ tỉnh t&aacute;o v&agrave;o';
-    }else if(h&lt;14){
-      msg='🍽️ Trưa rồi, ăn xong h&atilde;y blitz 😆';
-    }else if(h&lt;18){
-      msg='⚡ Chiều căng n&atilde;o, coi chừng tilt';
-}else if(h&lt;22){
-      msg='🌆 Tối l&agrave; giờ v&agrave;ng leo rank';
-    }else{
-      msg='😴 Khuya qu&aacute; rồi, thua th&igrave; ngủ nha';
-    }
-    document.getElementById('timeText').innerHTML=
-      '🕒 &lt;b&gt;'+h+':'+m+'&lt;/b&gt;&lt;br&gt;'+msg;
-  ">🔄 Cập nhật</div>
-</div>
-<!--
-© 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
-Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho phép.
-© 2026 - Source code is the property of the author.
-Unauthorized modification or copying is prohibited.
--->
-  <br><br>
 <div class="card">
 <div style="position: relative; width:100%; max-width:100%; box-sizing:border-box; margin: 20px auto; font-family: 'Segoe UI', sans-serif; text-align: center;" onmouseover="this.querySelector('.popup').style.opacity='1';
              this.querySelector('.popup').style.pointerEvents='auto';" onmouseout="this.querySelector('.popup').style.opacity='0';
