@@ -634,39 +634,42 @@ Unauthorized modification or copying is prohibited.
 <div style="font-size: 12px; font-weight: 800; color: #1976d2; margin-bottom: 6px;">🏖️ CH&Agrave;O H&Egrave; 2026</div>
 <div id="tetA" style="font-size: 14px; line-height: 1.5;">Bấm n&uacute;t b&ecirc;n dưới để xem bao l&acirc;u nữa tới H&egrave; n&egrave; 🌊</div>
 <div style="margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; cursor: pointer; font-weight: 900; font-size: 13px; color: #ffffff; background: linear-gradient(180deg,#42a5f5,#1e88e5); border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.2);" onclick="
+
+clearInterval(window.summerTimer);
+
 function updateSummerCountdown(){
 
-  const target=new Date(2026,5,1);
-  const now=new Date();
+  const target = new Date(2026,5,1);
+  const now = new Date();
 
-  const d=target-now;
+  const d = target - now;
 
-  const el=document.getElementById('tetA');
+  const el = document.getElementById('tetA');
 
-  if(d<=0){
+  if(d <= 0){
     el.innerHTML='🎉 HÈ ĐẾN RỒI!';
     return;
   }
 
-  const day=Math.floor(d/86400000);
-  const hour=Math.floor(d/3600000)%24;
-  const min=Math.floor(d/60000)%60;
-  const sec=Math.floor(d/1000)%60;
+  const day = Math.floor(d/86400000);
+  const hour = Math.floor(d/3600000)%24;
+  const min = Math.floor(d/60000)%60;
+  const sec = Math.floor(d/1000)%60;
 
-  el.innerHTML=
-  `
-  ⏳ Còn <b>${day}</b> ngày
-  <b>${hour}</b> giờ
-  <b>${min}</b> phút
-  <b>${sec}</b> giây
-  `;
+  el.innerHTML =
+  '⏳ Còn <b>' + day +
+  '</b> ngày <b>' + hour +
+  '</b> giờ <b>' + min +
+  '</b> phút <b>' + sec +
+  '</b> giây nữa là tới Hè 🌊';
 }
-
-setInterval(updateSummerCountdown,1000);
 
 updateSummerCountdown();
-}
+
+window.summerTimer = setInterval(updateSummerCountdown,1000);
+
 ">☀️ Cập nhật</div>
+</div>
 </div>
 <!--
 © 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
@@ -824,11 +827,18 @@ setTimeout(()=&gt;{
     this.innerHTML=='8'
 ){
     r.innerHTML='🎆 &lt;b&gt;Đ&Atilde; MỞ KH&Oacute;A!&lt;/b&gt;';
+  box.classList.add('unlock');
     box.style.background='linear-gradient(135deg,#ffcc00,#ff9800)';
     secret.style.display='block';
   }else{
-    r.innerHTML='❌ Sai rồi, thử lại nha';
-  }
+  r.innerHTML='❌ Sai rồi, thử lại nha';
+
+  box.classList.add('shake');
+
+  setTimeout(()=>{
+    box.classList.remove('shake');
+  },350);
+}
 },1000);
 ">0</a></div>
 <a style="font-size: 12px; color: #ffd700; text-decoration: none;" onclick="
