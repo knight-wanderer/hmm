@@ -42,10 +42,32 @@ html, body{
   border-radius: 18px;
   transition: .25s ease;
 }
-  
+.section-box{
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+}
+
+.section-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.08),
+      transparent 40%
+    );
+  pointer-events:none;
+}
+
 .card{
-  margin-bottom: 14px;
-  animation: fadeUp .4s ease;
+  margin-bottom:18px;
+  animation:fadeUp .45s ease;
+}
+
+.card:hover{
+  transform:translateY(-2px);
 }
 
 @keyframes fadeUp{
@@ -53,20 +75,185 @@ html, body{
   to{opacity:1; transform: translateY(0);}
 }
 
+  /* CUSTOM SCROLLBAR */
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+  background:
+    linear-gradient(
+      #3b82f6,
+      #8b5cf6
+    );
+
+  border-radius:999px;
+}
 /* POPUP */
 .popup{
   max-width:90vw;
   word-break:break-word;
   white-space:normal;
 }
-/* GAME BUTTON */
-.game-btn{
-  transition:.2s ease;
-}
-.game-btn:hover{
-  transform: translateY(-5px) scale(1.03);
+/* FEEDBACK BOX */
+.feedback-input{
+  width:100%;
+  height:100px;
+
+  border:none;
+  outline:none;
+
+  resize:none;
+
+  border-radius:16px;
+  padding:16px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  color:white;
+
+  backdrop-filter:blur(12px);
+
+  transition:.25s;
 }
 
+.feedback-input:focus{
+  box-shadow:
+    0 0 0 2px rgba(96,165,250,.5),
+    0 0 20px rgba(96,165,250,.25);
+}
+
+.send-btn{
+  width:100%;
+  border:none;
+
+  padding:14px;
+
+  border-radius:16px;
+
+  font-weight:800;
+  font-size:15px;
+
+  cursor:pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #8b5cf6
+    );
+
+  color:white;
+
+  transition:.25s;
+}
+
+.send-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 10px 24px rgba(59,130,246,.35);
+}
+
+.send-btn.loading{
+  opacity:.7;
+  pointer-events:none;
+}
+/* GAME BUTTON */
+  .game-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.game-btn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:88px;
+
+  border-radius:18px;
+  text-decoration:none;
+  overflow:hidden;
+
+  font-weight:800;
+  font-size:15px;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.game-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.25),
+      transparent 60%
+    );
+
+  opacity:.8;
+}
+
+.game-btn:hover{
+  transform:
+    translateY(-6px)
+    scale(1.03);
+
+  filter:brightness(1.05);
+}
+
+.game-btn:active{
+  transform:scale(.96);
+}
+
+@media(max-width:600px){
+  .game-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* SAFE BOX */ 
+  .shake{
+  animation:shake .35s;
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+}
+
+.unlock{
+  animation:unlock .8s ease;
+}
+
+@keyframes unlock{
+  0%{
+    transform:scale(.9);
+    filter:brightness(1);
+  }
+
+  50%{
+    transform:scale(1.05);
+    filter:brightness(1.4);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
 /* DARK MODE GLOBAL */
 body.dark-mode{
   background:#070A12;
@@ -84,6 +271,101 @@ body.dark-mode .main-box{
     grid-template-columns:1fr !important;
   }
 }
+/*CLUB TILLE */
+  .club-title{
+  position:relative;
+  text-align:center;
+  padding:24px;
+
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:2px;
+
+  overflow:hidden;
+}
+
+.club-title::before{
+  content:"";
+  position:absolute;
+  width:180%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.15),
+      transparent
+    );
+
+  top:0;
+  left:-120%;
+
+  animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+  to{
+    left:120%;
+  }
+}
+  /* PARTICLE BACKGROUND */
+  .bg-particles{
+  position:fixed;
+  inset:0;
+
+  pointer-events:none;
+
+  background-image:
+    radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  animation:moveBg 18s linear infinite;
+
+  z-index:-1;
+}
+
+@keyframes moveBg{
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(-40px);
+  }
+}
+/* TOAST */
+#toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    rgba(15,23,42,.92);
+
+  color:white;
+
+  padding:14px 20px;
+
+  border-radius:14px;
+
+  backdrop-filter:blur(16px);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.3s ease;
+
+  z-index:999999;
+}
+
+#toast.show{
+  opacity:1;
+  bottom:30px;
+}
 </style>
 
 </head>
@@ -98,14 +380,30 @@ function toggleGlobalTheme(){
   }
 }
 
-window.onload=function(){
+window.addEventListener('load', function(){
   if(localStorage.getItem('globalTheme')==='dark'){
     document.body.classList.add('dark-mode');
   }
+});
+  function toast(msg){
+  const t=document.getElementById('toast');
+
+  t.innerHTML=msg;
+  t.classList.add('show');
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    t.classList.remove('show');
+  },2500);
 }
 </script>
 <body>
 
+<div class="bg-particles"></div>
+  
+<div id="toast"></div>
+  
 <div class="main-box">
   
 <!-- ===== DARK TOGGLE GLOBAL ===== -->
@@ -118,9 +416,9 @@ style="padding:10px 18px;border-radius:999px;border:none;font-weight:800;cursor:
 
 <!-- ================= CLUB TITLE ================= -->
 <div class="card">
-<div class="glass" style="padding:18px;text-align:center;font-weight:900;">
-CÂU LẠC BỘ IRON WILL
-</div>
+  <div class="glass club-title">
+    ⚔️ CÂU LẠC BỘ IRON WILL
+  </div>
 </div>
 
 <div class="card">
@@ -193,7 +491,7 @@ Unauthorized modification or copying is prohibited.
 -->
 <br><br>
 <div class="card">
-<div id="gameHub" class="glass" style="padding:18px;">
+  <div id="gameHub" class="glass section-box">
 
 <div style="width:100%; max-width:100%; box-sizing:border-box; margin: 22px auto; padding: 22px 20px; background: linear-gradient(180deg,rgba(245,250,255,.96),rgba(225,240,255,.92)); border-radius: 18px; border: 1px solid rgba(120,185,235,.6); box-shadow: 0 14px 34px rgba(70,140,210,.35),               inset 0 0 26px rgba(255,255,255,.9); font-family: Segoe UI,Tahoma,Arial,sans-serif; transition: .25s ease;"><!-- HEADER -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
@@ -204,43 +502,9 @@ Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho ph
 © 2026 - Source code is the property of the author.
 Unauthorized modification or copying is prohibited.
 -->
-<div style="cursor: pointer; padding: 6px 14px; font-size: 13px; font-weight: bold; border-radius: 999px; background: linear-gradient(180deg,#dbeafe,#bfdbfe); color: #0a3a5e; user-select: none; box-shadow: 0 4px 10px rgba(0,0,0,.25);" onclick="
-        var hub=document.getElementById('gameHub');
-        var title=document.getElementById('hubTitle');
-        var dark=hub.getAttribute('data-dark')==='1';
-
-        if(!dark){
-          hub.style.background='linear-gradient(180deg,#1a2230,#0f1622)';
-          hub.style.border='1px solid rgba(120,180,255,.25)';
-          hub.style.boxShadow='0 18px 38px rgba(0,0,0,.6), inset 0 0 26px rgba(255,255,255,.04)';
-          title.style.color='#dbeafe';
-
-          this.innerText='🌙 Dark';
-          this.style.background='linear-gradient(180deg,#334155,#1e293b)';
-          this.style.color='#e5e7eb';
-
-          hub.setAttribute('data-dark','1');
-        } else {
-          hub.style.background='linear-gradient(180deg,rgba(245,250,255,.96),rgba(225,240,255,.92))';
-          hub.style.border='1px solid rgba(120,185,235,.6)';
-          hub.style.boxShadow='0 14px 34px rgba(70,140,210,.35), inset 0 0 26px rgba(255,255,255,.9)';
-          title.style.color='#0a3a5e';
-
-          this.innerText='☀️ Light';
-          this.style.background='linear-gradient(180deg,#dbeafe,#bfdbfe)';
-          this.style.color='#0a3a5e';
-
-          hub.setAttribute('data-dark','0');
-        }
-">☀️ Light</div>
-</div>
-<!--
-© 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
-Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho phép.
-© 2026 - Source code is the property of the author.
-Unauthorized modification or copying is prohibited.
--->
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;"><a href="https://sudoku.com/vi" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 16px 10px; background: linear-gradient(135deg,#e3f2fd,#bbdefb); border-radius: 14px; text-decoration: none; color: #08324a; font-weight: bold; font-size: 14px; box-shadow: 0 8px 20px rgba(60,140,200,.35); transition: transform .2s ease, box-shadow .2s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 14px 28px rgba(60,140,200,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 20px rgba(60,140,200,.35)'" rel="noopener">🔢 Sudoku</a> <a href="https://doodles.google/doodle/celebrating-popcorn/" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 16px 10px; background: linear-gradient(135deg,#e8f5e9,#c8e6c9); border-radius: 14px; text-decoration: none; color: #124019; font-weight: bold; font-size: 14px; box-shadow: 0 8px 20px rgba(80,160,100,.35); transition: transform .2s ease, box-shadow .2s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 14px 28px rgba(80,160,100,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 20px rgba(80,160,100,.35)'" rel="noopener">🍿 Bỏng ng&ocirc;</a> <a href="https://chromedino.com/" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 16px 10px; background: linear-gradient(135deg,#fff3e0,#ffe0b2); border-radius: 14px; text-decoration: none; color: #5a3600; font-weight: bold; font-size: 14px; box-shadow: 0 8px 20px rgba(180,120,40,.35); transition: transform .2s ease, box-shadow .2s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 14px 28px rgba(180,120,40,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 20px rgba(180,120,40,.35)'" rel="noopener">🦖 Khủng long T-Rex</a> <a href="https://neal.fun/" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 16px 10px; background: linear-gradient(135deg,#f3e5f5,#e1bee7); border-radius: 14px; text-decoration: none; color: #3a164f; font-weight: bold; font-size: 14px; box-shadow: 0 8px 20px rgba(150,80,180,.35); transition: transform .2s ease, box-shadow .2s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 14px 28px rgba(150,80,180,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 20px rgba(150,80,180,.35)'" rel="noopener">Neal.Fun</a></div>
+</div>
+</div>
 </div>
 <!--
 © 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
@@ -337,7 +601,7 @@ Unauthorized modification or copying is prohibited.
 <div style="display: flex; justify-content: center;">
 <div style="width:100%; max-width:100%; box-sizing:border-box; padding: 15px; border-radius: 12px; background: #1f1f1f; box-shadow: 0 4px 15px rgba(0,0,0,0.4); font-family: Arial,sans-serif;"><textarea id="fbtext" placeholder="Nhập lời g&oacute;p &yacute; của bạn / T&ecirc;n t&agrave;i khoản ( ko bắt buộc )" style="width: 100%; height: 80px; resize: none; border: none; border-radius: 8px; padding: 10px; box-sizing: border-box; font-size: 14px; outline: none; margin-bottom: 10px;"></textarea> <button style="width: 100%; padding: 10px; border: none; border-radius: 8px; background: #3c82f6; color: white; font-size: 15px; cursor: pointer;" onclick="
 const text=document.getElementById('fbtext').value.trim();
-if(!text){alert('Bạn chưa nhập nội dung');return;}
+if(!text){toast('Bạn chưa nhập nội dung');return;}
 
 fetch('https://discord.com/api/webhooks/1482720281666523156/tt0xPSpFcsu0J2MYUGCqJfthHhWFH1x8P-mgCvcEQYxwMVnhU9sSDIKkQb7f7cr0YcIJ',{
 method:'POST',
@@ -348,8 +612,8 @@ headers:{
 body:JSON.stringify({content:text,source:'test'})
 })
 .then(r=&gt;{if(!r.ok)throw new Error('Gửi thất bại');return r.text();})
-.then(()=&gt;{alert('Đ&atilde; gửi th&agrave;nh c&ocirc;ng!');document.getElementById('fbtext').value='';})
-.catch(err=&gt;alert('Lỗi: '+err.message));
+.then(()=&gt;{toast('🎉 Đã gửi góp ý thành công!');document.getElementById('fbtext').value='';})
+.catch(err=&gt;toast('Lỗi: '+err.message));
 "> Gửi </button>
 <div style="margin-top: 10px; font-size: 12px; color: #aaa; text-align: center;">Nguồn:@2k11dentusapa</div>
 </div>
@@ -370,21 +634,37 @@ Unauthorized modification or copying is prohibited.
 <div style="font-size: 12px; font-weight: 800; color: #1976d2; margin-bottom: 6px;">🏖️ CH&Agrave;O H&Egrave; 2026</div>
 <div id="tetA" style="font-size: 14px; line-height: 1.5;">Bấm n&uacute;t b&ecirc;n dưới để xem bao l&acirc;u nữa tới H&egrave; n&egrave; 🌊</div>
 <div style="margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; cursor: pointer; font-weight: 900; font-size: 13px; color: #ffffff; background: linear-gradient(180deg,#42a5f5,#1e88e5); border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.2);" onclick="
-t=new Date(2026,5,1);
-n=new Date();
-d=t-n;m=['🍦 Ăn kem xả l&aacute;ng nha!','🌴 Đi biển th&ocirc;i chờ chi!','🏊 Quẩy nước nhiệt t&igrave;nh nh&eacute;!','🥤 Tr&agrave; sữa full topping!','☀️ Rực rỡ như nắng h&egrave;!'];
-i=Math.floor(Math.random()*m.length);
-if(d&lt;=0){
-tetA.innerHTML='🎉 &lt;b&gt;H&Egrave; ĐẾN RỒI!!!&lt;/b&gt;&lt;br&gt;'+m[i];
-}else{
-ng=Math.floor(d/86400000);
-g=Math.floor(d/3600000)%24;
-p=Math.floor(d/60000)%60;
-icon=ng&lt;1?'🌊':ng&lt;7?'🍦':'⏳';
-tetA.innerHTML=
-icon+' C&ograve;n &lt;b&gt;'+ng+'&lt;/b&gt; ng&agrave;y &lt;b&gt;'+g+
-'&lt;/b&gt; giờ &lt;b&gt;'+p+
-'&lt;/b&gt; ph&uacute;t nữa l&agrave; tới H&egrave;&lt;br&gt;'+m[i];
+function updateSummerCountdown(){
+
+  const target=new Date(2026,5,1);
+  const now=new Date();
+
+  const d=target-now;
+
+  const el=document.getElementById('tetA');
+
+  if(d<=0){
+    el.innerHTML='🎉 HÈ ĐẾN RỒI!';
+    return;
+  }
+
+  const day=Math.floor(d/86400000);
+  const hour=Math.floor(d/3600000)%24;
+  const min=Math.floor(d/60000)%60;
+  const sec=Math.floor(d/1000)%60;
+
+  el.innerHTML=
+  `
+  ⏳ Còn <b>${day}</b> ngày
+  <b>${hour}</b> giờ
+  <b>${min}</b> phút
+  <b>${sec}</b> giây
+  `;
+}
+
+setInterval(updateSummerCountdown,1000);
+
+updateSummerCountdown();
 }
 ">☀️ Cập nhật</div>
 </div>
@@ -499,7 +779,7 @@ setTimeout(()=&gt;{
   box.lock=0;
   if(
     this.innerHTML=='1' &amp;&amp;
-    this.nextElementSibling.innerHTML=='6' &amp;&amp;document.querySelectorAll('.btn').innerHTML=='8'
+    this.nextElementSibling.innerHTML=='6' &amp;&amp;document.querySelectorAll('.btn')[2].innerHTML=='8'
   ){
     r.innerHTML='🎆 &lt;b&gt;Đ&Atilde; MỞ KH&Oacute;A!&lt;/b&gt;';
     box.style.background='linear-gradient(135deg,#ffcc00,#ff9800)';
