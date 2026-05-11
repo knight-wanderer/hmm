@@ -60,21 +60,252 @@ html, body{
     );
   pointer-events:none;
 }
-
-.card{
-  margin-bottom:18px;
-  animation:fadeUp .45s ease;
-}
-
-.card:hover{
-  transform:translateY(-2px);
-}
+.card{ 
+  margin-bottom:18px; 
+  animation:fadeUp .45s ease; }
 
 @keyframes fadeUp{
   from{opacity:0; transform: translateY(10px);}
   to{opacity:1; transform: translateY(0);}
 }
+/* SUNSET */
+.sunset-box{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
 
+  padding:34px 18px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff9966 0%,
+      #ff5e9c 35%,
+      #6d5dfc 70%,
+      #14143b 100%
+    );
+
+  overflow:hidden;
+
+  position:relative;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.45);
+}
+
+.sunset-title{
+  text-align:center;
+
+  color:white;
+
+  font-size:24px;
+  font-weight:900;
+
+  letter-spacing:4px;
+
+  margin-bottom:30px;
+
+  text-shadow:
+    0 0 18px rgba(255,255,255,.25);
+}
+
+.sunset-roadmap{
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+  overflow-x:auto;
+
+  padding:18px 8px 30px;
+
+  scroll-behavior:smooth;
+}
+
+.sunset-roadmap::-webkit-scrollbar{
+  height:8px;
+}
+
+.sunset-roadmap::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.25);
+  border-radius:999px;
+}
+
+.road-line{
+  width:60px;
+  height:5px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.95),
+      rgba(255,255,255,.15)
+    );
+
+  flex-shrink:0;
+}
+
+.milestone{
+  position:relative;
+
+  min-width:110px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  flex-shrink:0;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.milestone:hover .milestone-core{
+  box-shadow:
+    0 0 25px rgba(255,255,255,.45);
+}
+
+.milestone-core{
+  width:84px;
+  height:84px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:34px;
+
+  backdrop-filter:blur(10px);
+
+  border:2px solid rgba(255,255,255,.25);
+
+  transition:.25s ease;
+}
+
+.milestone.unlocked .milestone-core{
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,.45),
+      rgba(255,255,255,.08)
+    );
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,.35),
+    0 0 50px rgba(255,255,255,.15);
+}
+
+.milestone.locked .milestone-core{
+  background:
+    rgba(0,0,0,.28);
+
+  opacity:.5;
+}
+
+.milestone-label{
+  margin-top:12px;
+
+  color:white;
+
+  font-size:16px;
+  font-weight:900;
+
+  text-shadow:0 0 10px rgba(0,0,0,.35);
+}
+
+.milestone-popup{
+  position:absolute;
+
+  bottom:120px;
+  left:50%;
+
+  transform:
+    translateX(-50%)
+    translateY(10px);
+
+  min-width:180px;
+
+  padding:12px 14px;
+
+  border-radius:16px;
+
+  background:
+    rgba(10,10,20,.92);
+
+  color:white;
+
+  text-align:left;
+
+  font-size:13px;
+
+  line-height:1.5;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.25s ease;
+
+  backdrop-filter:blur(14px);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45);
+
+  z-index:10;
+}
+
+.milestone:hover .milestone-popup{
+  opacity:1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+.popup-title{
+  font-size:14px;
+  font-weight:900;
+
+  margin-bottom:6px;
+
+  color:#ffd580;
+}
+
+.popup-date{
+  opacity:.8;
+
+  font-size:12px;
+
+  margin-top:6px;
+}
+
+@media(max-width:600px){
+
+  .milestone{
+    min-width:95px;
+  }
+
+  .milestone-core{
+    width:74px;
+    height:74px;
+
+    font-size:28px;
+  }
+
+  .milestone-popup{
+    min-width:150px;
+  }
+}
   /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar{
   width:10px;
@@ -153,12 +384,11 @@ html, body{
   transition:.25s;
 }
 
-.send-btn:hover{
-  transform:translateY(-2px);
+  .send-btn:hover{
   box-shadow:
     0 10px 24px rgba(59,130,246,.35);
 }
-
+  
 .send-btn.loading{
   opacity:.7;
   pointer-events:none;
@@ -206,10 +436,6 @@ html, body{
 }
 
 .game-btn:hover{
-  transform:
-    translateY(-6px)
-    scale(1.03);
-
   filter:brightness(1.05);
 }
 
@@ -222,7 +448,31 @@ html, body{
     grid-template-columns:1fr;
   }
 }
-/* SAFE BOX */ 
+    /* GAMEHUB */ 
+.gamehub-light{
+  background: linear-gradient(180deg,
+    rgba(245,250,255,.96),
+    rgba(225,240,255,.92));
+    
+  border: 1px solid rgba(120,185,235,.6);
+  
+  color:#0a3a5e;
+}
+
+.gamehub-dark{
+  background: linear-gradient(180deg,
+    rgba(20,35,55,.95),
+    rgba(15,25,40,.92));
+
+  border:1px solid rgba(90,150,210,.45);
+
+  color:#d7ecff;
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.6),
+    inset 0 0 26px rgba(120,180,255,.12);
+}
+  /* SAFE BOX */ 
   .shake{
   animation:shake .35s;
 }
@@ -498,26 +748,25 @@ Không được tự ý chỉnh sửa hoặc sao chép khi chưa có sự cho ph
 © 2026 - Source code is the property of the author.
 Unauthorized modification or copying is prohibited.
 -->
-<div id="gameHub" data-dark="0" class="glass section-box"> 
+<div id="gameHub" class="glass section-box gamehub-light">
 <div style="width:100%; max-width:100%; box-sizing:border-box; margin: 22px auto; padding: 22px 20px; background: linear-gradient(180deg,rgba(245,250,255,.96),rgba(225,240,255,.92)); border-radius: 18px; border: 1px solid rgba(120,185,235,.6); box-shadow: 0 14px 34px rgba(70,140,210,.35),               inset 0 0 26px rgba(255,255,255,.9); font-family: Segoe UI,Tahoma,Arial,sans-serif; transition: .25s ease;"><!-- HEADER -->
 <div style="text-align: center; margin-bottom: 24px;">
   <div style="display: inline-flex; align-items: center; justify-content: center; padding: 14px 26px; background: linear-gradient(180deg, rgba(220,242,255,0.95), rgba(185,222,255,0.9)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #0a3a5e; font-weight: 600; border-radius: 12px; cursor: pointer; border: 1px solid rgba(110,175,230,0.7); box-shadow: inset 0 0 14px rgba(255,255,255,0.95),                   0 10px 22px rgba(80,150,220,0.45); transition: transform .2s ease, box-shadow .2s ease;" onclick="
-        var b=document.getElementById('glassBox');
-        var d=localStorage.getItem('glassDark')==='1';
-        if(!d){
-          b.style.background='linear-gradient(180deg, rgba(20,35,55,0.95), rgba(15,25,40,0.92))';
-          b.style.color='#d7ecff';
-          b.style.border='1px solid rgba(90,150,210,0.45)';
-          b.style.boxShadow='0 14px 34px rgba(0,0,0,0.6), inset 0 0 26px rgba(120,180,255,0.12)';
-          this.innerText='🌙 Dark mode';
-          localStorage.setItem('glassDark','1');
-        } else {
-          b.style.background='linear-gradient(180deg, rgba(245,252,255,0.95), rgba(215,238,255,0.92))';
-          b.style.color='#0b2d44';
-          b.style.border='1px solid rgba(120,185,235,0.65)';
-          b.style.boxShadow='0 14px 34px rgba(70,140,210,0.35), inset 0 0 26px rgba(255,255,255,0.9)';
-          this.innerText='☀️ Light mode';
-          localStorage.setItem('glassDark','0');
+const hub=document.getElementById('gameHub');
+
+if(hub.classList.contains('gamehub-light')){
+
+  hub.classList.remove('gamehub-light');
+  hub.classList.add('gamehub-dark');
+
+  this.innerText='🌙 Dark mode';
+
+}else{
+
+  hub.classList.remove('gamehub-dark');
+  hub.classList.add('gamehub-light');
+
+  this.innerText='☀️ Light mode';
         }
       " onmouseover="
         this.style.transform='scale(1.06)';
@@ -737,57 +986,165 @@ Unauthorized modification or copying is prohibited.
 -->
   <br><br>
   <div class="card">
-<div style="width: 100%; max-width: 100%; box-sizing:border-box; margin: 30px auto; background: linear-gradient(180deg,#ff9966,#ff5e9c,#6d5dfc,#14143b); border-radius: 30px; padding: 80px 20px 120px 20px; font-family: Arial; color: white; box-sizing: border-box;">
-<h2 style="color: #ffffff; text-align: center; margin: 0 0 80px 0; font-size: 20px; font-weight: 900; letter-spacing: 4px; text-shadow: 2px 2px #00aaff;">H&Agrave;NH TR&Igrave;NH HO&Agrave;NG H&Ocirc;N</h2>
-<div style="height: 520px; position: relative;"><!-- 50 -->
-<div style="position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="55" viewbox="0 0 90 80" style="filter: drop-shadow(0 0 10px white);"> <circle cx="45" cy="50" r="18" fill="white"></circle> <circle cx="32" cy="60" r="12" fill="white"></circle> <circle cx="58" cy="60" r="12" fill="white"></circle> </svg>
-<div style="position: absolute; left: 45px; top: 50%; transform: translateY(-50%); max-width:180px; white-space:normal; word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🎉 50 th&agrave;nh vi&ecirc;n<br />📅 24/12/2025</div>
+
+<div class="sunset-box">
+
+<div class="sunset-title">
+🌇 HÀNH TRÌNH HOÀNG HÔN
+</div>
+
+<div class="sunset-roadmap">
+
+<!-- 50 -->
+<div class="milestone unlocked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+🎉 50 thành viên
+</div>
+
+Cột mốc đầu tiên của câu lạc bộ ✨
+
+<div class="popup-date">
+📅 24/12/2025
 </div>
 </div>
-<div style="position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="60" viewbox="0 0 100 85" style="filter: drop-shadow(0 0 12px white);"> <circle cx="50" cy="50" r="22" fill="white"></circle> <circle cx="35" cy="60" r="14" fill="white"></circle> <circle cx="65" cy="60" r="14" fill="white"></circle> </svg>
-<div style="position: absolute; left: 50px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🎉 150 th&agrave;nh vi&ecirc;n<br />📅 08/02/2026</div>
+
+<div class="milestone-core">
+☁️
+</div>
+
+<div class="milestone-label">
+50
+</div>
+
+</div>
+
+<div class="road-line"></div>
+
+<!-- 150 -->
+<div class="milestone unlocked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+🔥 150 thành viên
+</div>
+
+Cộng đồng bắt đầu phát triển mạnh 🚀
+
+<div class="popup-date">
+📅 08/02/2026
 </div>
 </div>
-<div style="position: absolute; bottom: 25%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block; opacity: .35;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="70" viewbox="0 0 110 85"> <circle cx="55" cy="50" r="24" fill="white"></circle> <circle cx="38" cy="60" r="16" fill="white"></circle> <circle cx="72" cy="60" r="16" fill="white"></circle> </svg>
-<div style="position: absolute; left: 55px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🔒 250 th&agrave;nh vi&ecirc;n<br />Chưa mở kh&oacute;a</div>
+
+<div class="milestone-core">
+☁️
 </div>
+
+<div class="milestone-label">
+150
 </div>
-<div style="position: absolute; bottom: 50%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block; opacity: .35;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="80" viewbox="0 0 120 90"> <circle cx="60" cy="50" r="28" fill="white"></circle> <circle cx="40" cy="60" r="20" fill="white"></circle> <circle cx="80" cy="60" r="20" fill="white"></circle> </svg>
-<div style="position: absolute; left: 60px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🔒 500 th&agrave;nh vi&ecirc;n<br />Chưa mở kh&oacute;a</div>
+
 </div>
+
+<div class="road-line"></div>
+
+<!-- 250 -->
+<div class="milestone locked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+🔒 250 thành viên
 </div>
-<div style="position: absolute; bottom: 75%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block; opacity: .35;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="90" viewbox="0 0 130 95"> <circle cx="65" cy="50" r="32" fill="white"></circle> <circle cx="40" cy="60" r="22" fill="white"></circle> <circle cx="90" cy="60" r="22" fill="white"></circle> </svg>
-<div style="position: absolute; left: 65px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🔒 750 th&agrave;nh vi&ecirc;n<br />Chưa mở kh&oacute;a</div>
+
+Mốc tiếp theo đang chờ mở khóa...
+
 </div>
+
+<div class="milestone-core">
+🔒
 </div>
-<div style="position: absolute; bottom: 80%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block; opacity: .35;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="95" viewbox="0 0 140 100"> <circle cx="70" cy="50" r="35" fill="white"></circle> <circle cx="45" cy="60" r="25" fill="white"></circle> <circle cx="95" cy="60" r="25" fill="white"></circle> </svg>
-<div style="position: absolute; left: 65px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🔒 800 th&agrave;nh vi&ecirc;n<br />Chưa mở kh&oacute;a</div>
+
+<div class="milestone-label">
+250
 </div>
+
 </div>
-<div style="position: absolute; bottom: 95%; left: 50%; transform: translateX(-50%);">
-<div style="position: relative; display: inline-block; opacity: .35;" onmouseover="this.children[1].style.opacity=1" onmouseout="this.children[1].style.opacity=0"><svg width="95" viewbox="0 0 100 100" style="filter: drop-shadow(0 0 16px gold);"> <polygon points="50,5 61,38 95,38 67,58 78,92 50,72 22,92 33,58 5,38 39,38" fill="white"></polygon> </svg>
-<div style="position: absolute; left: 65px; top: 50%; transform: translateY(-50%); max-width:180px;
-  white-space:normal;
-  word-break:break-word; background: rgba(0,0,0,.9); padding: 10px 14px; border-radius: 14px; font-size: 13px; white-space: nowrap; opacity: 0; transition: .2s; z-index: 100;">🔒 1000 th&agrave;nh vi&ecirc;n<br />Mục ti&ecirc;u lớn</div>
+
+<div class="road-line"></div>
+
+<!-- 500 -->
+<div class="milestone locked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+🔒 500 thành viên
 </div>
+
+Một cột mốc đáng nhớ của club 🌌
+
 </div>
+
+<div class="milestone-core">
+🔒
 </div>
+
+<div class="milestone-label">
+500
+</div>
+
+</div>
+
+<div class="road-line"></div>
+<!-- 750 -->
+<div class="milestone locked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+🔒 750 thành viên
+</div>
+
+Mục tiêu club đang hướng tới
+
+</div>
+
+<div class="milestone-core">
+🔒
+</div>
+
+<div class="milestone-label">
+750
+</div>
+
+</div>
+
+<div class="road-line"></div>
+<!-- 1000 -->
+<div class="milestone locked">
+
+<div class="milestone-popup">
+<div class="popup-title">
+⭐ 1000 thành viên
+</div>
+
+Mục tiêu lớn của club 👑
+
+</div>
+
+<div class="milestone-core">
+⭐
+</div>
+
+<div class="milestone-label">
+1000
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <!--
 © 2026 - Mã nguồn thuộc quyền sở hữu của tác giả.
@@ -819,9 +1176,15 @@ setTimeout(()=&gt;{
     box.style.background='linear-gradient(135deg,#ffcc00,#ff9800)';
     secret.style.display='block';
   }else{
-    r.innerHTML='❌ Sai rồi, thử lại nha';
-    box.classList.remove('shake');
-  },350);
+
+  r.innerHTML='❌ Sai rồi, thử lại nha';
+
+  box.classList.remove('shake');
+
+  void box.offsetWidth;
+
+  box.classList.add('shake');
+}
   }
 },1000);
 ">0</a> <a class="btn" style="width: 42px; height: 42px; background: #ffd700; color: #7a0000; border-radius: 10px; font-weight: 900; font-size: 18px; line-height: 42px; text-decoration: none; display: inline-block;" onclick="
@@ -842,9 +1205,15 @@ setTimeout(()=&gt;{
     box.style.background='linear-gradient(135deg,#ffcc00,#ff9800)';
     secret.style.display='block';
   }else{
-    r.innerHTML='❌ Sai rồi, thử lại nha';
-    box.classList.remove('shake');
-  },350);
+
+  r.innerHTML='❌ Sai rồi, thử lại nha';
+
+  box.classList.remove('shake');
+
+  void box.offsetWidth;
+
+  box.classList.add('shake');
+}
   }
 },1000);
 ">0</a> <a class="btn" style="width: 42px; height: 42px; background: #ffd700; color: #7a0000; border-radius: 10px; font-weight: 900; font-size: 18px; line-height: 42px; text-decoration: none; display: inline-block;" onclick="
@@ -866,13 +1235,15 @@ setTimeout(()=&gt;{
     box.style.background='linear-gradient(135deg,#ffcc00,#ff9800)';
     secret.style.display='block';
   }else{
+
   r.innerHTML='❌ Sai rồi, thử lại nha';
 
-  box.classList.add('shake');
+  box.classList.remove('shake');
 
-  setTimeout(()=>{
-    box.classList.remove('shake');
-  },350);
+  void box.offsetWidth;
+
+  box.classList.add('shake');
+}
 }
 },1000);
 ">0</a></div>
