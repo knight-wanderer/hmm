@@ -306,9 +306,16 @@ overflow:visible;
     font-size:28px;
   }
 
-  .milestone-popup{
-    min-width:150px;
-  }
+ .milestone-popup{
+  position:absolute;
+
+  top:-115px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  z-index:99999;
+}
 }
   /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar{
